@@ -1,2 +1,0 @@
-// script.js - simulação leve
-document.addEventListener('DOMContentLoaded', function(){const logout = document.querySelectorAll('[data-logout]');logout.forEach(btn=>btn.addEventListener('click', function(e){e.preventDefault();alert('Logout (protótipo estático)');window.location.href = 'index.html';}));});
