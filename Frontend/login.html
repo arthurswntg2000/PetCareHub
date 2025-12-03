@@ -1,1 +1,38 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PetCareHub - Login</title><link rel="stylesheet" href="css/style.css"></head><body><header class="container header"><div class="brand"><div class="logo">PC</div><div><h1 class="site-title">PetCareHub</h1><div class="small">Acesse sua conta</div></div></div><nav class="nav"><a href="index.html" class="button ghost">Voltar</a></nav></header><main class="container"><section class="card" style="max-width:600px;margin:0 auto"><h2>Entrar</h2><form action="dashboard.html" method="get" onsubmit="return true;"><label for="email">E-mail</label><input id="email" type="email" required><label for="senha">Senha</label><input id="senha" type="password" required><div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px"><button class="button" type="submit">Entrar</button></div></form><p class="small" style="margin-top:10px">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p></section></main><script src="js/script.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Entrar — PetCareHub</title>
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container">
+    <section style="max-width:520px;margin:0 auto" class="form card">
+      <h2>Entrar</h2>
+      <form id="formLogin">
+        <label for="email">E-mail</label>
+        <input id="email" class="input" type="email" required>
+        <label for="senha">Senha</label>
+        <input id="senha" class="input" type="password" required minlength="8">
+        <div class="form-actions">
+          <a class="btn secondary" href="index.html">Voltar</a>
+          <button class="btn" type="submit">Entrar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">PetCareHub</footer>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // load navbar
+    fetch('components/navbar.html').then(r=>r.text()).then(t=>document.getElementById('navbar').innerHTML=t);
+  </script>
+</body>
+</html>

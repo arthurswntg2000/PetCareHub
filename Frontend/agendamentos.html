@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agendamentos — PetCareHub</title>
+  <link rel="stylesheet" href="assets/css/agendamentos.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container">
+    <section class="card">
+      <div class="row" style="align-items:center;justify-content:space-between">
+        <div>
+          <h2 style="margin:0">Agendamentos</h2>
+          <div class="small">Gerencie consultas e serviços</div>
+        </div>
+        <div class="controls">
+          <button class="btn" id="newApptBtn">Novo agendamento</button>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <table class="table" id="appointmentsTable">
+          <thead><tr><th>Data</th><th>Pet</th><th>Tipo</th><th>Ações</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">PetCareHub</footer>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/agendamento.js"></script>
+  <script>fetch('components/navbar.html').then(r=>r.text()).then(t=>document.getElementById('navbar').innerHTML=t);</script>
+</body>
+</html>

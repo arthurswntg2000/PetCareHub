@@ -1,1 +1,92 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PetCareHub - Dashboard</title><link rel="stylesheet" href="css/style.css"></head><body><header class="container header"><div class="brand"><div class="logo">PC</div><div><h1 class="site-title">PetCareHub</h1><div class="small">Olá, Arthur</div></div></div><nav class="nav"><a href="pets.html" class="button ghost">Meus Pets</a><a href="#" data-logout class="button">Sair</a></nav></header><main class="container"><section class="grid"><div class="card"><h3>Meus Pets</h3><div class="pets-list"><a class="pet-item" href="detalhes.html"><div class="pet-thumb">R</div><div style="flex:1"><div style="font-weight:700">Rex</div><div class="small">Cachorro • 4 anos • Vacinado</div></div><div class="small">Próxima vacina: 20/11/2025</div></a><a class="pet-item" href="detalhes.html"><div class="pet-thumb">M</div><div style="flex:1"><div style="font-weight:700">Mimi</div><div class="small">Gata • 2 anos • Vacinada</div></div><div class="small">Sem eventos próximos</div></a></div></div><aside class="card"><h4>Próximos Eventos</h4><div class="events"><div class="event"><div><strong>Vacina - Rex</strong><div class="small">20/11/2025</div></div><div class="small">Agendado</div></div><div class="event"><div><strong>Banho - Mimi</strong><div class="small">05/11/2025</div></div><div class="small">A confirmar</div></div></div></aside></section><footer class="footer card">Desenvolvido por Arthur Sampaio Pereira — Matrícula: 2023098557</footer></main><script src="js/script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – PetCareHub</title>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS Específico -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <!-- JS de autenticacao -->
+    <script src="assets/js/auth.js" defer></script>
+
+    <!-- Dashboard -->
+    <script src="assets/js/dashboard.js" defer></script>
+
+    <!-- API -->
+    <script src="assets/js/api.js" defer></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <main class="dashboard-container">
+
+        <h1 class="title">Dashboard</h1>
+        <p class="subtitle">Bem-vindo ao painel do PetCareHub</p>
+
+        <!-- CARDS DE RESUMO -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h2 id="totalPets">0</h2>
+                <p>Pets cadastrados</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="totalAgendamentos">0</h2>
+                <p>Agendamentos</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="proximosAgendamentos">0</h2>
+                <p>Próximos agendamentos</p>
+            </div>
+        </section>
+
+        <!-- LISTA DE AGENDAMENTOS -->
+        <section class="appointments-section">
+            <div class="section-header">
+                <h2>Próximos agendamentos</h2>
+                <a href="agendamentos.html" class="btn-primary">Ver todos</a>
+            </div>
+
+            <ul id="appointmentList" class="appointment-list">
+                <!-- Carregado dinamicamente pelo dashboard.js -->
+            </ul>
+        </section>
+
+        <!-- AÇÕES RÁPIDAS -->
+        <section class="quick-actions">
+            <h2>Ações rápidas</h2>
+            <div class="actions-grid">
+                <a href="pets.html" class="action-btn">Gerenciar Pets</a>
+                <a href="agendamentos.html" class="action-btn">Agendamentos</a>
+                <a href="cadastro.html" class="action-btn">Cadastrar Usuário</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Carregar componentes (navbar e footer)
+        async function loadComponents() {
+            const navbar = await fetch("components/navbar.html").then(r => r.text());
+            document.getElementById("navbar-container").innerHTML = navbar;
+
+            const footer = await fetch("components/footer.html").then(r => r.text());
+            document.getElementById("footer-container").innerHTML = footer;
+        }
+
+        loadComponents();
+    </script>
+
+</body>
+</html>

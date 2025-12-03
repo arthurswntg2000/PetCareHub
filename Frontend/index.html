@@ -1,93 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PetCareHub – Cuidando do seu pet com amor</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PetCareHub — Home</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <!-- navbar -->
+  <div id="navbar"></div>
 
-  
-  <header class="header">
-    <div class="container">
-      <h1 class="logo">🐾 PetCareHub</h1>
-      <nav class="navbar">
-        <ul>
-          <li><a href="#home" class="active">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
- 
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h2>Cuidando do seu pet com amor e tecnologia 🐶💻</h2>
-      <p>O PetCareHub conecta tutores e veterinários, oferecendo uma plataforma prática para agendar consultas, acompanhar vacinas e garantir o bem-estar dos seus animais de estimação.</p>
-      <a href="#servicos" class="btn">Conheça nossos serviços</a>
-    </div>
-    <div class="hero-image">
-      <img src="images/pet-hero.png" alt="Cachorro feliz sendo cuidado">
-    </div>
-  </section>
-
- 
-  <section id="sobre" class="sobre">
-    <div class="container">
-      <h2>Sobre Nós</h2>
-      <p>O <strong>PetCareHub</strong> nasceu com a missão de aproximar tutores e profissionais, simplificando o cuidado com a saúde animal. Oferecemos uma plataforma intuitiva, segura e feita com carinho para quem ama pets.</p>
-    </div>
-  </section>
-
-  
-  <section id="servicos" class="servicos">
-    <div class="container">
-      <h2>Nossos Serviços</h2>
-      <div class="cards">
+  <main class="container">
+    <section class="card hero">
+      <div>
+        <h1 class="h1">PetCareHub</h1>
+        <p class="lead">Organize consultas, vacinas e o histórico de saúde do seu pet em um só lugar.</p>
+        <p style="margin-top:12px">
+          <a class="btn" href="cadastro.html">Criar conta</a>
+          <a class="btn secondary" href="pets.html">Meus Pets</a>
+        </p>
+      </div>
+      <div style="max-width:360px">
         <div class="card">
-          <i class="fas fa-calendar-check"></i>
-          <h3>Agendamento Online</h3>
-          <p>Marque consultas e acompanhamentos com veterinários de forma rápida e prática.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-syringe"></i>
-          <h3>Controle de Vacinas</h3>
-          <p>Mantenha o histórico de vacinas do seu pet sempre atualizado.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-bone"></i>
-          <h3>Dicas e Cuidados</h3>
-          <p>Conteúdo exclusivo sobre alimentação, comportamento e bem-estar animal.</p>
+          <h3 style="margin:0">Comece agora</h3>
+          <p class="small">Cadastre seu primeiro pet e agende uma consulta.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  
-  <section id="contato" class="contato">
-    <div class="container">
-      <h2>Entre em Contato</h2>
-      <form>
-        <input type="text" placeholder="Seu nome" required>
-        <input type="email" placeholder="Seu e-mail" required>
-        <textarea placeholder="Sua mensagem" rows="4" required></textarea>
-        <button type="submit" class="btn">Enviar</button>
-      </form>
-    </div>
-  </section>
+    <section class="card-grid" style="margin-top:20px">
+      <div class="card pet-card">
+        <h3>Gestão de pets</h3>
+        <p class="small">Cadastre perfis para cada pet e acompanhe histórico.</p>
+      </div>
+      <div class="card pet-card">
+        <h3>Agendamentos</h3>
+        <p class="small">Agende consultas e receba lembretes.</p>
+      </div>
+      <div class="card pet-card">
+        <h3>Dashboard</h3>
+        <p class="small">Visão geral de atividades e métricas.</p>
+      </div>
+    </section>
+  </main>
 
-  
-  <footer class="footer">
-    <p>Desenvolvido por Arthur Sampaio Pereira</p>
-  </footer>
+  <footer class="footer">PetCareHub • Protótipo DSW — © <span id="year"></span></footer>
 
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="components/navbar.html" type="text/html" id="nav-template"></script>
+  <script>
+    // Inject navbar/footer components (simple client-side include)
+    async function loadComponent(id, src) {
+      try {
+        const res = await fetch(src);
+        const html = await res.text();
+        document.getElementById(id).innerHTML = html;
+      } catch(e) { /* ignore */ }
+    }
+    loadComponent('navbar','components/navbar.html');
+  </script>
 </body>
 </html>
