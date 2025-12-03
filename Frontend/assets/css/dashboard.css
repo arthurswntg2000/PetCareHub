@@ -1,0 +1,12 @@
+.dashboard .cards {
+    display: flex;
+    gap: 20px;
+}
+.card {
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 6px #0002;
+}
