@@ -21,3 +21,48 @@ Observações:
 - Desenvolvido com HTML, CSS e JavaScript puro (sem frameworks CSS).
 - Compatível com navegadores modernos (Chrome, Firefox, Edge).
 - Design responsivo e semântica HTML5 preservada.
+
+
+# PetCareHub – Backend
+
+O backend da aplicação **PetCareHub**, desenvolvido em **Node.js + Express + Sequelize**.
+O sistema fornece autenticação JWT, gerenciamento de usuários, pets e agendamentos, além de paginação e proteção de rotas.
+
+## Tecnologias
+- Node.js, Express.js
+- MySQL, Sequelize ORM
+- JWT, Bcrypt.js
+- Cors, Dotenv
+
+## Como rodar
+1. Instale dependências:
+   ```
+   npm install
+   ```
+2. Configure o arquivo `.env`:
+   ```
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASS=
+   DB_NAME=petcarehub
+   JWT_SECRET=supersecretkey123
+   ```
+3. Inicie o servidor:
+   ```
+   npm start
+   ```
+
+Servidor estará em **http://localhost:3000**.
+
+## Estrutura
+- Rotas: /auth, /users, /pets, /appointments
+- Controllers, Models, Middleware, Services, Utils
+
+## Banco de dados
+Certifique-se de criar o banco:
+```
+CREATE DATABASE petcarehub;
+```
+
+
+
