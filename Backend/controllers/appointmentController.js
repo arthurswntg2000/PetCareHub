@@ -16,17 +16,12 @@ module.exports = {
   },
 
   async listAppointments(req, res) {
-    const appointments = await Appointment.findAll({
-      where: { UserId: req.userId }
-    });
-
-    res.json(appointments);
+    const data = await pagination(Appointment, req);
+    res.json(data);
   },
 
   async getAppointmentById(req, res) {
-    const appointment = await Appointment.findOne({
-      where: { id: req.params.id, UserId: req.userId }
-    });
+    const appointment = await Appointment.findByPk(req.params.id);
 
     if (!appointment)
       return res.status(404).json({ error: "Agendamento não encontrado" });
@@ -35,9 +30,7 @@ module.exports = {
   },
 
   async updateAppointment(req, res) {
-    const appointment = await Appointment.findOne({
-      where: { id: req.params.id, UserId: req.userId }
-    });
+    const appointment = await Appointment.findByPk(req.params.id);
 
     if (!appointment)
       return res.status(404).json({ error: "Agendamento não encontrado" });
@@ -47,9 +40,7 @@ module.exports = {
   },
 
   async deleteAppointment(req, res) {
-    const appointment = await Appointment.findOne({
-      where: { id: req.params.id, UserId: req.userId }
-    });
+    const appointment = await Appointment.findByPk(req.params.id);
 
     if (!appointment)
       return res.status(404).json({ error: "Agendamento não encontrado" });
