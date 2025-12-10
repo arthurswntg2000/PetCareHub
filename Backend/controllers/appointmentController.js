@@ -2,7 +2,6 @@ const Appointment = require("../models/Appointment");
 const pagination = require("../services/paginationService");
 
 module.exports = {
-  // Criar agendamento
   async createAppointment(req, res) {
     try {
       const appointment = await Appointment.create({
@@ -16,15 +15,18 @@ module.exports = {
     }
   },
 
-  // Listar agendamentos
   async listAppointments(req, res) {
-    const data = await pagination(Appointment, req);
-    res.json(data);
+    const appointments = await Appointment.findAll({
+      where: { UserId: req.userId }
+    });
+
+    res.json(appointments);
   },
 
-  // Buscar por ID
   async getAppointmentById(req, res) {
-    const appointment = await Appointment.findByPk(req.params.id);
+    const appointment = await Appointment.findOne({
+      where: { id: req.params.id, UserId: req.userId }
+    });
 
     if (!appointment)
       return res.status(404).json({ error: "Agendamento não encontrado" });
@@ -32,9 +34,10 @@ module.exports = {
     res.json(appointment);
   },
 
-  // Atualizar
   async updateAppointment(req, res) {
-    const appointment = await Appointment.findByPk(req.params.id);
+    const appointment = await Appointment.findOne({
+      where: { id: req.params.id, UserId: req.userId }
+    });
 
     if (!appointment)
       return res.status(404).json({ error: "Agendamento não encontrado" });
@@ -43,9 +46,10 @@ module.exports = {
     res.json(appointment);
   },
 
-  // Deletar
   async deleteAppointment(req, res) {
-    const appointment = await Appointment.findByPk(req.params.id);
+    const appointment = await Appointment.findOne({
+      where: { id: req.params.id, UserId: req.userId }
+    });
 
     if (!appointment)
       return res.status(404).json({ error: "Agendamento não encontrado" });

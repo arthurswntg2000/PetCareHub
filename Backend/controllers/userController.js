@@ -2,30 +2,24 @@ const User = require("../models/User");
 const pagination = require("../services/paginationService");
 
 module.exports = {
-  
-  // Listar todos os usuários
   async listUsers(req, res) {
     try {
-      const result = await pagination(User, req);
-      res.json(result);
+      const data = await pagination(User, req);
+      res.json(data);
     } catch (err) {
-      res.status(500).json({ error: "Erro ao listar usuários." });
+      res.status(500).json({ error: err.message });
     }
   },
 
-  // Retornar o perfil do usuário logado
   async getProfile(req, res) {
     try {
-      const user = await User.findByPk(req.user.id);
+      const user = await User.findByPk(req.userId);
 
-      if (!user) {
-        return res.status(404).json({ error: "Usuário não encontrado" });
-      }
+      if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
 
       res.json(user);
-
     } catch (err) {
-      res.status(500).json({ error: "Erro ao buscar o perfil." });
+      res.status(500).json({ error: "Erro ao buscar o perfil" });
     }
   }
 };
