@@ -3,7 +3,9 @@ module.exports = {
     return /\S+@\S+\.\S+/.test(email);
   },
 
-  // Middleware para validar registro
+  // ---------------------------
+  // VALIDAR REGISTRO DE USUÁRIO
+  // ---------------------------
   validateRegister(req, res, next) {
     const { name, email, password } = req.body;
 
@@ -22,7 +24,9 @@ module.exports = {
     next();
   },
 
-  // Middleware para validar login
+  // ----------------------
+  // VALIDAR LOGIN
+  // ----------------------
   validateLogin(req, res, next) {
     const { email, password } = req.body;
 
@@ -36,17 +40,23 @@ module.exports = {
 
     next();
   },
-  
-  // Middleware para validar PET
+
+  // ----------------------
+  // VALIDAR PET (ATUALIZADO)
+  // ----------------------
   validatePet(req, res, next) {
-    const { name, type, age } = req.body;
+    const { name, species, breed, age } = req.body;
 
     if (!name || name.length < 2) {
       return res.status(400).json({ error: "Nome do pet deve ter pelo menos 2 caracteres." });
     }
 
-    if (!type) {
-      return res.status(400).json({ error: "Tipo do pet é obrigatório." });
+    if (!species) {
+      return res.status(400).json({ error: "Espécie do pet é obrigatória." });
+    }
+
+    if (!breed) {
+      return res.status(400).json({ error: "Raça do pet é obrigatória." });
     }
 
     if (age !== undefined && age < 0) {
@@ -56,17 +66,24 @@ module.exports = {
     next();
   },
 
+  // ----------------------
+  // VALIDAR AGENDAMENTO
+  // ----------------------
   validateAppointment(req, res, next) {
-  const { date, description } = req.body;
+    const { date, description, PetId } = req.body;
 
-  if (!date) {
-    return res.status(400).json({ error: "Data é obrigatória." });
-  }
+    if (!date) {
+      return res.status(400).json({ error: "Data é obrigatória." });
+    }
 
-  if (!description || description.length < 3) {
-    return res.status(400).json({ error: "Descrição muito curta." });
-  }
+    if (!description || description.length < 3) {
+      return res.status(400).json({ error: "Descrição muito curta." });
+    }
 
-  next();
+    if (!PetId) {
+      return res.status(400).json({ error: "É necessário informar o ID do pet." });
+    }
+
+    next();
   }
 };

@@ -1,0 +1,106 @@
+############################################################
+# USERS – Registro, Login, Perfil
+############################################################
+
+### Registrar usuário (POST /auth/register)
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Arthur3",
+  "email": "arthur3@email.com",
+  "password": "123456"
+}
+
+### Login de usuário (POST /auth/login)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "arthur3@email.com",
+  "password": "123456"
+}
+
+### Dados do próprio usuário (GET /users/me)
+GET http://localhost:3000/users/me
+Authorization: Bearer {{token}}
+
+############################################################
+# PETS – CRUD Completo
+############################################################
+
+### Criar pet (POST /pets)
+POST http://localhost:3000/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Rufus",
+  "species": "Cachorro",
+  "breed": "PitBull",
+  "age": 4
+}
+
+### Listar todos os pets (GET /pets)
+GET http://localhost:3000/pets
+Authorization: Bearer {{token}}
+### Buscar pet por ID (GET /pets/1)
+GET http://localhost:3000/pets/1
+Authorization: Bearer {{token}}
+
+### Atualizar pet (PUT /pets/1)
+PUT http://localhost:3000/pets/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Rex Atualizado",
+  "species": "Cachorro",
+  "breed": "Golden Retriever",
+  "age": 6
+}
+
+### Deletar pet (DELETE /pets/1)
+DELETE http://localhost:3000/pets/1
+Authorization: Bearer {{token}}
+
+
+############################################################
+# APPOINTMENTS – CRUD Completo
+############################################################
+
+### Criar agendamento (POST /appointments)
+POST http://localhost:3000/appointments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "petId": 1,
+  "date": "2025-12-15",
+  "time": "14:30",
+  "description": "Consulta geral"
+}
+
+### Listar agendamentos (GET /appointments)
+GET http://localhost:3000/appointments
+Authorization: Bearer {{token}}
+
+### Buscar agendamento por ID (GET /appointments/1)
+GET http://localhost:3000/appointments/1
+Authorization: Bearer {{token}}
+
+### Atualizar agendamento (PUT /appointments/1)
+PUT http://localhost:3000/appointments/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "petId": 1,
+  "date": "2025-12-15",
+  "time": "15:30",
+  "description": "Consulta atualizada"
+}
+
+### Deletar agendamento (DELETE /appointments/1)
+DELETE http://localhost:3000/appointments/1
+Authorization: Bearer {{token}}
