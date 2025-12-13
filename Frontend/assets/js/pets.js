@@ -1,24 +1,20 @@
-async function loadPets() {
-    const pets = await api("/pets");
-    const list = document.getElementById("pet-list");
+import { apiGet } from "./api.js";
 
-    list.innerHTML = pets.map(p => `
-        <div class="pet-card">
-            <h3>${p.name}</h3>
-            <p>Tipo: ${p.type}</p>
-            <p>Idade: ${p.age}</p>
-            <a href="detalhes.html?id=${p.id}">Ver detalhes</a>
-        </div>
-    `).join("");
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  const pets = await apiGet("/pets");
+  const list = document.getElementById("listaPets");
+  list.innerHTML = "";
 
-async function loadPetDetails() {
-    const params = new URLSearchParams(location.search);
-    const id = params.get("id");
-
-    const pet = await api(`/pets/${id}`);
-
-    petName.innerText = pet.name;
-    petType.innerText = pet.type;
-    petAge.innerText = pet.age;
-}
+  pets.forEach(p => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <div class="pet-card">
+        <h3>${p.name}</h3>
+        <p>Espécie: ${p.species}</p>
+        <p>Raça: ${p.breed || "-"}</p>
+        <a href="detalhes.html?id=${p.id}" class="btn secondary">Detalhes</a>
+      </div>
+    `;
+    list.appendChild(li);
+  });
+});

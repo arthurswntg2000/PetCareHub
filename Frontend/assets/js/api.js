@@ -1,22 +1,54 @@
-const API = "http://localhost:3000";
+// assets/js/api.js
 
-async function api(url, method = "GET", data = null) {
-    const token = localStorage.getItem("token");
+// Ajustar conforme domínio/porta
+export const API_BASE = "http://localhost:3000";
 
-    const options = {
-        method,
-        headers: { "Content-Type": "application/json" }
-    };
-
-    if (token) options.headers["Authorization"] = "Bearer " + token;
-    if (data) options.body = JSON.stringify(data);
-
-    const res = await fetch(API + url, options);
-    return res.json();
+export function getAuthHeader() {
+  const token = localStorage.getItem("token");
+  return token ? { Authorization: "Bearer " + token } : {};
 }
 
-function loadComponent(id, path) {
-    fetch(path)
-        .then(res => res.text())
-        .then(html => document.getElementById(id).innerHTML = html);
+export async function apiGet(path) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    }
+  });
+  return res.json();
+}
+
+export async function apiPost(path, body) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
+    body: JSON.stringify(body)
+  });
+  return res.json();
+}
+
+export async function apiPut(path, body) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    },
+    body: JSON.stringify(body)
+  });
+  return res.json();
+}
+
+export async function apiDelete(path) {
+  const res = await fetch(`${API_BASE}${path}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      ...getAuthHeader()
+    }
+  });
+  return res.json();
 }
