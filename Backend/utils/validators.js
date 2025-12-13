@@ -42,7 +42,7 @@ module.exports = {
   },
 
   // ----------------------
-  // VALIDAR PET (ATUALIZADO)
+  // VALIDAR PET
   // ----------------------
   validatePet(req, res, next) {
     const { name, species, breed, age } = req.body;
@@ -70,7 +70,7 @@ module.exports = {
   // VALIDAR AGENDAMENTO
   // ----------------------
   validateAppointment(req, res, next) {
-    const { date, description, PetId } = req.body;
+    const { date, description, petId } = req.body;
 
     if (!date) {
       return res.status(400).json({ error: "Data é obrigatória." });
@@ -80,7 +80,7 @@ module.exports = {
       return res.status(400).json({ error: "Descrição muito curta." });
     }
 
-    if (!PetId) {
+    if (!petId) {
       return res.status(400).json({ error: "É necessário informar o ID do pet." });
     }
 
