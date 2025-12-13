@@ -1,6 +1,5 @@
 // assets/js/api.js
 
-// Ajustar conforme domínio/porta
 export const API_BASE = "http://localhost:3000";
 
 export function getAuthHeader() {

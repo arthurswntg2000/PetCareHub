@@ -1,13 +1,2 @@
-.login-container {
-    width: 350px;
-    margin: 100px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 0 12px #0002;
-}
-.login-container input {
-    width: 100%;
-    margin: 10px 0;
-    padding: 12px;
-}
+.login-container { width: 350px; margin: 100px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 0 12px #0002; }
+.login-container input { width: 100%; margin: 10px 0; padding: 12px; }

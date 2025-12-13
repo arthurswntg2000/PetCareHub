@@ -1,6 +1,11 @@
 import { apiGet } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!localStorage.getItem("token")) {
+    window.location = "login.html";
+    return;
+  }
+
   const pets = await apiGet("/pets");
   const list = document.getElementById("listaPets");
   list.innerHTML = "";

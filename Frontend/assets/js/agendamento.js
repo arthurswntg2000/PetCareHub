@@ -1,6 +1,11 @@
-import { apiGet, apiPost } from "./api.js";
+import { apiGet, apiPost, apiDelete } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("token")) {
+    window.location = "login.html";
+    return;
+  }
+
   loadAppointments();
 
   document.getElementById("newApptBtn").addEventListener("click", async () => {
@@ -49,7 +54,7 @@ async function loadAppointments() {
 }
 
 window.deleteAppointment = async function(id) {
-  if (!confirm("Deletar agendamento?")) return;
+  if (!confirm("Deseja excluir?")) return;
   const res = await apiDelete(`/appointments/${id}`);
   if (res.error) alert(res.error);
   else loadAppointments();
