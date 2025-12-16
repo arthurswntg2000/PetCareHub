@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const dotenv = require("dotenv");
 const db = require("./config/db");
 
@@ -17,21 +16,6 @@ const PORT = process.env.PORT || 3000;
    ====================== */
 app.use(cors());
 app.use(express.json());
-
-/* ======================
-     Servir Frontend
-   ====================== */
-
-// Diretório onde está o frontend (HTML, CSS, JS)
-// Ajuste o caminho se a pasta estiver em outro lugar
-const frontendPath = path.join(__dirname, "frontend");
-
-app.use(express.static(frontendPath));
-
-// Cadê o SPA? Quando a rota não bater com API, serve o index.html
-app.get("/", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
-});
 
 /* ======================
        Rotas da API

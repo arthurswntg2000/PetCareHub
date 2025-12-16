@@ -5,68 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard – PetCareHub</title>
 
-  <!-- CSS Global -->
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
 
-  <!-- IMPORTS COMO MODULE PARA JAVASCRIPT -->
-  <script type="module" src="assets/js/api.js"></script>
-  <script type="module" src="assets/js/auth.js"></script>
-  <script type="module" src="assets/js/dashboard.js"></script>
+  <!-- PROTEÇÃO DE ROTA -->
+  <script src="assets/js/protect.js"></script>
 </head>
+
 <body>
-    <div id="navbar"></div>
+  <div id="navbar"></div>
 
-    <main class="dashboard-container">
-      <h1 class="title">Dashboard</h1>
-      <p class="subtitle">Bem-vindo ao painel do PetCareHub</p>
+  <main class="dashboard-container">
+    <h1 class="title">Dashboard</h1>
+    <p class="subtitle">Bem-vindo ao painel do PetCareHub</p>
 
-      <section class="stats-grid">
-        <div class="stat-card">
-          <h2 id="totalPets">0</h2>
-          <p>Pets cadastrados</p>
-        </div>
+    <section class="stats-grid">
+      <div class="stat-card">
+        <h2 id="totalPets">0</h2>
+        <p>Pets cadastrados</p>
+      </div>
 
-        <div class="stat-card">
-          <h2 id="totalAgendamentos">0</h2>
-          <p>Agendamentos</p>
-        </div>
+      <div class="stat-card">
+        <h2 id="totalAgendamentos">0</h2>
+        <p>Agendamentos</p>
+      </div>
 
-        <div class="stat-card">
-          <h2 id="proximosAgendamentos">0</h2>
-          <p>Próximos agendamentos</p>
-        </div>
-      </section>
+      <div class="stat-card">
+        <h2 id="proximosAgendamentos">0</h2>
+        <p>Próximos agendamentos</p>
+      </div>
+    </section>
 
-      <section class="appointments-section">
-        <div class="section-header">
-          <h2>Próximos agendamentos</h2>
-          <a href="agendamentos.html" class="btn-primary">Ver todos</a>
-        </div>
+    <section class="appointments-section">
+      <div class="section-header">
+        <h2>Próximos agendamentos</h2>
+        <a href="agendamentos.html" class="btn-primary">Ver todos</a>
+      </div>
 
-        <ul id="appointmentList" class="appointment-list"></ul>
-      </section>
+      <ul id="appointmentList" class="appointment-list"></ul>
+    </section>
 
-      <section class="quick-actions">
-        <h2>Ações rápidas</h2>
-        <div class="actions-grid">
-          <a href="pets.html" class="action-btn">Gerenciar Pets</a>
-          <a href="agendamentos.html" class="action-btn">Agendamentos</a>
-          <a href="cadastro.html" class="action-btn">Cadastrar Usuário</a>
-        </div>
-      </section>
-    </main>
+    <section class="quick-actions">
+      <h2>Ações rápidas</h2>
+      <div class="actions-grid">
+        <a href="pets.html" class="action-btn">Gerenciar Pets</a>
+        <a href="agendamentos.html" class="action-btn">Agendamentos</a>
+        <a href="cadastro.html" class="action-btn">Cadastrar Usuário</a>
+      </div>
+    </section>
+  </main>
 
-    <div id="footer-container"></div>
+  <div id="footer-container"></div>
 
-    <script>
-      async function loadComponents() {
-        const navbar = await fetch("components/navbar.html").then(r => r.text());
-        document.getElementById("navbar").innerHTML = navbar;
-        const footer = await fetch("components/footer.html").then(r => r.text());
-        document.getElementById("footer-container").innerHTML = footer;
-      }
-      loadComponents();
-    </script>
+  <!-- SCRIPT PRINCIPAL DA PÁGINA -->
+  <script type="module" src="assets/js/dashboard.js"></script>
+
+  <!-- COMPONENTES -->
+  <script>
+    async function loadComponents() {
+      const navbar = await fetch("components/navbar.html").then(r => r.text());
+      document.getElementById("navbar").innerHTML = navbar;
+
+      const footer = await fetch("components/footer.html").then(r => r.text());
+      document.getElementById("footer-container").innerHTML = footer;
+    }
+    loadComponents();
+  </script>
 </body>
 </html>
