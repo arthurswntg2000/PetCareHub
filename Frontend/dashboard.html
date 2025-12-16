@@ -1,92 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard – PetCareHub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – PetCareHub</title>
 
-    <!-- CSS Global -->
-    <link rel="stylesheet" href="assets/css/style.css">
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
 
-    <!-- CSS Específico -->
-    <link rel="stylesheet" href="assets/css/dashboard.css">
-
-    <!-- JS de autenticacao -->
-    <script src="assets/js/auth.js" defer></script>
-
-    <!-- Dashboard -->
-    <script src="assets/js/dashboard.js" defer></script>
-
-    <!-- API -->
-    <script src="assets/js/api.js" defer></script>
+  <!-- IMPORTS COMO MODULE PARA JAVASCRIPT -->
+  <script type="module" src="assets/js/api.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/dashboard.js"></script>
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <div id="navbar-container"></div>
+    <div id="navbar"></div>
 
     <main class="dashboard-container">
+      <h1 class="title">Dashboard</h1>
+      <p class="subtitle">Bem-vindo ao painel do PetCareHub</p>
 
-        <h1 class="title">Dashboard</h1>
-        <p class="subtitle">Bem-vindo ao painel do PetCareHub</p>
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h2 id="totalPets">0</h2>
+          <p>Pets cadastrados</p>
+        </div>
 
-        <!-- CARDS DE RESUMO -->
-        <section class="stats-grid">
-            <div class="stat-card">
-                <h2 id="totalPets">0</h2>
-                <p>Pets cadastrados</p>
-            </div>
+        <div class="stat-card">
+          <h2 id="totalAgendamentos">0</h2>
+          <p>Agendamentos</p>
+        </div>
 
-            <div class="stat-card">
-                <h2 id="totalAgendamentos">0</h2>
-                <p>Agendamentos</p>
-            </div>
+        <div class="stat-card">
+          <h2 id="proximosAgendamentos">0</h2>
+          <p>Próximos agendamentos</p>
+        </div>
+      </section>
 
-            <div class="stat-card">
-                <h2 id="proximosAgendamentos">0</h2>
-                <p>Próximos agendamentos</p>
-            </div>
-        </section>
+      <section class="appointments-section">
+        <div class="section-header">
+          <h2>Próximos agendamentos</h2>
+          <a href="agendamentos.html" class="btn-primary">Ver todos</a>
+        </div>
 
-        <!-- LISTA DE AGENDAMENTOS -->
-        <section class="appointments-section">
-            <div class="section-header">
-                <h2>Próximos agendamentos</h2>
-                <a href="agendamentos.html" class="btn-primary">Ver todos</a>
-            </div>
+        <ul id="appointmentList" class="appointment-list"></ul>
+      </section>
 
-            <ul id="appointmentList" class="appointment-list">
-                <!-- Carregado dinamicamente pelo dashboard.js -->
-            </ul>
-        </section>
-
-        <!-- AÇÕES RÁPIDAS -->
-        <section class="quick-actions">
-            <h2>Ações rápidas</h2>
-            <div class="actions-grid">
-                <a href="pets.html" class="action-btn">Gerenciar Pets</a>
-                <a href="agendamentos.html" class="action-btn">Agendamentos</a>
-                <a href="cadastro.html" class="action-btn">Cadastrar Usuário</a>
-            </div>
-        </section>
-
+      <section class="quick-actions">
+        <h2>Ações rápidas</h2>
+        <div class="actions-grid">
+          <a href="pets.html" class="action-btn">Gerenciar Pets</a>
+          <a href="agendamentos.html" class="action-btn">Agendamentos</a>
+          <a href="cadastro.html" class="action-btn">Cadastrar Usuário</a>
+        </div>
+      </section>
     </main>
 
-    <!-- FOOTER -->
     <div id="footer-container"></div>
 
     <script>
-        // Carregar componentes (navbar e footer)
-        async function loadComponents() {
-            const navbar = await fetch("components/navbar.html").then(r => r.text());
-            document.getElementById("navbar-container").innerHTML = navbar;
-
-            const footer = await fetch("components/footer.html").then(r => r.text());
-            document.getElementById("footer-container").innerHTML = footer;
-        }
-
-        loadComponents();
+      async function loadComponents() {
+        const navbar = await fetch("components/navbar.html").then(r => r.text());
+        document.getElementById("navbar").innerHTML = navbar;
+        const footer = await fetch("components/footer.html").then(r => r.text());
+        document.getElementById("footer-container").innerHTML = footer;
+      }
+      loadComponents();
     </script>
-
 </body>
 </html>

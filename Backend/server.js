@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const dotenv = require("dotenv");
 const db = require("./config/db");
 
@@ -12,20 +13,29 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 /* ======================
-   Middlewares globais
-====================== */
+     Middlewares globais
+   ====================== */
 app.use(cors());
 app.use(express.json());
 
-/* Log simples e organizado */
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-  next();
+/* ======================
+     Servir Frontend
+   ====================== */
+
+// Diretório onde está o frontend (HTML, CSS, JS)
+// Ajuste o caminho se a pasta estiver em outro lugar
+const frontendPath = path.join(__dirname, "frontend");
+
+app.use(express.static(frontendPath));
+
+// Cadê o SPA? Quando a rota não bater com API, serve o index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 /* ======================
-   Rotas
-====================== */
+       Rotas da API
+   ====================== */
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/users", require("./routes/userRoutes"));
 app.use("/pets", require("./routes/petRoutes"));
@@ -33,13 +43,13 @@ app.use("/appointments", require("./routes/appointmentRoutes"));
 
 /* ======================
    Middlewares finais
-====================== */
+   ====================== */
 app.use(notFound);       // 404
 app.use(errorHandler);   // erros gerais
 
 /* ======================
-   Inicialização
-====================== */
+   Banco + Inicialização
+   ====================== */
 db.sync({ alter: true })
   .then(() => {
     console.log("Banco de dados sincronizado com sucesso.");
