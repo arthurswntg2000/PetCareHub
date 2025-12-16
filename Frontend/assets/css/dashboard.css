@@ -91,3 +91,22 @@
 .action-btn:hover {
   background: var(--primary-dark);
 }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-card i {
+  font-size: 28px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}

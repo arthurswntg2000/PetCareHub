@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const res = await apiPost("/auth/login", { email, password });
 
-        // ✅ LOGIN OK
+        // LOGIN OK
         localStorage.setItem("token", res.token);
         localStorage.setItem("user", JSON.stringify(res.user));
 

@@ -8,28 +8,23 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/login.css">
 </head>
-<body>
+<body class="auth-page">
 
-  <div id="navbar"></div>
+<div class="auth-box">
+  <h1>Entrar</h1>
+  <p class="subtitle">Acesse sua conta do PetCareHub</p>
 
-  <main class="container">
-    <section class="form card" style="max-width:520px;margin:0 auto">
-      <h2>Entrar</h2>
+  <form id="formLogin">
+    <input type="email" id="email" placeholder="E-mail" required>
+    <input type="password" id="password" placeholder="Senha" required>
 
-      <form id="formLogin">
-        <label for="email">E-mail</label>
-        <input id="email" class="input" type="email" required>
+    <button class="btn btn-primary" type="submit">Entrar</button>
+  </form>sa
+</div>
 
-        <label for="password">Senha</label>
-        <input id="password" class="input" type="password" required minlength="8">
+<script type="module" src="assets/js/auth.js"></script>
+</body>
 
-        <div class="form-actions">
-          <a class="btn secondary" href="index.html">Voltar</a>
-          <button class="btn" type="submit">Entrar</button>
-        </div>
-      </form>
-    </section>
-  </main>
 
   <footer class="footer">PetCareHub</footer>
 

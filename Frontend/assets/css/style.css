@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
   --primary: #6366f1;
   --primary-dark: #4f46e5;
@@ -6,13 +8,14 @@
   --text: #111827;
   --muted: #6b7280;
   --border: #e5e7eb;
+  --success: #10b981;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -20,31 +23,33 @@ body {
   color: var(--text);
 }
 
-/* Utilidades */
+/* Containers */
 .container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
+  margin: auto;
+  padding: 32px 20px;
 }
 
+/* Cards */
 .card {
   background: var(--card);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(0,0,0,.06);
 }
 
-h1 { font-size: 32px; }
-h2 { font-size: 22px; }
-p { color: var(--muted); }
+/* Tipografia */
+h1 { font-size: 34px; margin-bottom: 8px; }
+h2 { font-size: 22px; margin-bottom: 8px; }
+.subtitle { color: var(--muted); margin-bottom: 32px; }
 
 /* Botões */
 .btn {
-  padding: 10px 18px;
-  border-radius: 10px;
+  padding: 12px 22px;
+  border-radius: 12px;
   font-weight: 500;
-  border: none;
   cursor: pointer;
+  border: none;
 }
 
 .btn-primary {
@@ -55,3 +60,48 @@ p { color: var(--muted); }
 .btn-primary:hover {
   background: var(--primary-dark);
 }
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+}
+
